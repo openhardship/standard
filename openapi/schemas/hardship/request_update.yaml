@@ -1,0 +1,25 @@
+HardshipRequestUpdate:
+  type: object
+  properties:
+    accountIds:
+      type: array
+      items:
+        type: string
+      description: Updated list of account identifiers related to the hardship request
+    requestType:
+      type: string
+      enum: [PAYMENT_DEFERRAL, PAYMENT_REDUCTION, PAYMENT_EXTENSION, DEBT_WAIVER, OTHER]
+      description: Updated type of hardship assistance being requested
+    reasonDetails:
+      type: string
+      description: Updated details about the hardship reason
+    proposedSolution:
+      type: string
+      description: Updated consumer's proposed solution
+    financialSummary:
+      $ref: '#/components/schemas/FinancialSummary'
+    supportingDocuments:
+      type: array
+      items:
+        $ref: '#/components/schemas/Document'
+      description: Updated supporting documents

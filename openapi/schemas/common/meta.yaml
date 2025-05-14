@@ -1,0 +1,17 @@
+Meta:
+  type: object
+  properties:
+    totalRecords:
+      type: integer
+      description: Total number of records
+    totalPages:
+      type: integer
+      description: Total number of pages
+    requestDateTime:
+      type: string
+      format: date-time
+      description: Date and time of the request
+  required:
+    - totalRecords
+    - totalPages
+    - requestDateTime

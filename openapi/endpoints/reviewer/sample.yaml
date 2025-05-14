@@ -1,0 +1,48 @@
+/reviewers/{reviewerId}/hardship-requests/sample:
+  get:
+    tags:
+      - Reviewers
+    summary: Get a sample of anonymized hardship requests
+    description: Retrieve a random sample of anonymized hardship requests for compliance review.
+    operationId: getSampleHardshipRequests
+    parameters:
+      - $ref: '#/components/parameters/ReviewerId'
+      - name: sampleSize
+        in: query
+        description: The number of anonymized requests to sample
+        required: true
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: dateFrom
+        in: query
+        description: Filter requests from this date (inclusive)
+        schema:
+          type: string
+          format: date
+      - name: dateTo
+        in: query
+        description: Filter requests to this date (inclusive)
+        schema:
+          type: string
+          format: date
+    security:
+      - DigitalID: [identity.strong, reviewer.read]
+    responses:
+      '200':
+        description: Successful response
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnonymizedHardshipRequestList'
+      '400':
+        $ref: '#/components/responses/BadRequest'
+      '401':
+        $ref: '#/components/responses/Unauthorized'
+      '403':
+        $ref: '#/components/responses/Forbidden'
+      '422':
+        $ref: '#/components/responses/UnprocessableEntity'
+      '500':
+        $ref: '#/components/responses/InternalError'

@@ -1,0 +1,23 @@
+DigitalIDMapping:
+ type: object
+properties:
+  digitalIdIdentifier:
+    type: string
+    description: Unique identifier from DigitalID
+  internalId:
+    type: string
+    format: uuid
+    description: Internal system UUID
+  identityVerificationLevel:
+    type: string
+    enum: [BASIC, STANDARD, STRONG]
+    description: Level of identity verification provided by DigitalID
+  verificationDateTime:
+    type: string
+    format: date-time
+    description: Date and time of identity verification
+required:
+  - digitalIdIdentifier
+  - internalId
+  - identityVerificationLevel
+  - verificationDateTime

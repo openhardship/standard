@@ -1,0 +1,49 @@
+AnonymisedHardshipRequest:
+  type: object
+  properties:
+    AnonymisedRequestId:
+      type: string
+      description: Anonymised identifier for the hardship request
+    providerId:
+      type: string
+      format: uuid
+      description: Identifier of the provider
+    requestType:
+      type: string
+      enum: [PAYMENT_DEFERRAL, PAYMENT_REDUCTION, PAYMENT_EXTENSION, DEBT_WAIVER, OTHER]
+      description: Type of hardship assistance requested
+    requestReason:
+      type: string
+      enum: [UNEMPLOYMENT, ILLNESS, NATURAL_DISASTER, RELATIONSHIP_BREAKDOWN, REDUCED_INCOME, OTHER]
+      description: Reason for the hardship request
+    digitalIdVerificationLevel:
+      type: string
+      enum: [BASIC, STANDARD, STRONG]
+      description: Level of DigitalID verification used, Anonymised
+    demographicData:
+      $ref: '#/components/schemas/AnonymisedDemographicData'
+    financialSummary:
+      $ref: '#/components/schemas/AnonymisedFinancialSummary'
+    status:
+      type: string
+      enum: [SUBMITTED, IN_REVIEW, APPROVED, REJECTED, MODIFIED, CANCELLED]
+      description: Status of the hardship request
+    requestDate:
+      type: string
+      format: date
+      description: Date when the request was created (day precision only)
+    responseTimeInDays:
+      type: integer
+      description: Number of days between request submission and provider response
+    outcome:
+      type: string
+      description: Summary of the outcome of the hardship request
+  required:
+    - AnonymisedRequestId
+    - providerId
+    - requestType
+    - requestReason
+    - demographicData
+    - financialSummary
+    - status
+    - requestDate

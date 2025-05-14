@@ -1,0 +1,8 @@
+CounsellorId:
+  name: counsellorId
+  in: path
+  required: true
+  description: Unique identifier for the counsellor
+  schema:
+    type: string
+    format: uuid

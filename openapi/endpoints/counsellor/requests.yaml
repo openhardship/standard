@@ -1,0 +1,38 @@
+/counsellors/{counsellorId}/consumers/{consumerId}/hardship-requests:
+  post:
+    tags:
+      - Counsellors
+      - HardshipRequests
+    summary: Create a hardship request on behalf of a consumer
+    description: Create a new hardship request for a consumer by their authorized counsellor.
+    operationId: createHardshipRequestAsCounsellor
+    parameters:
+      - $ref: '#/components/parameters/CounsellorId'
+      - $ref: '#/components/parameters/ConsumerId'
+    security:
+      - DigitalID: [identity.standard, counsellor.write]
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HardshipRequestCreate'
+      required: true
+    responses:
+      '201':
+        description: Hardship request created successfully
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HardshipRequest'
+      '400':
+        $ref: '#/components/responses/BadRequest'
+      '401':
+        $ref: '#/components/responses/Unauthorized'
+      '403':
+        $ref: '#/components/responses/Forbidden'
+      '404':
+        $ref: '#/components/responses/NotFound'
+      '422':
+        $ref: '#/components/responses/UnprocessableEntity'
+      '500':
+        $ref: '#/components/responses/InternalError'

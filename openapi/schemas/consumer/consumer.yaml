@@ -1,0 +1,26 @@
+Consumer:
+  type: object
+  properties:
+    consumerId:
+      type: string
+      format: uuid
+      description: Unique identifier for the consumer
+    digitalIdIdentifier:
+      type: string
+      description: Unique identifier from the DigitalID system
+    digitalIdVerificationLevel:
+      type: string
+      enum: [BASIC, STANDARD, STRONG]
+      description: Level of identity verification from DigitalID
+    consentId:
+      type: string
+      format: uuid
+      description: Identifier for the consumer's consent
+    consentExpiryDateTime:
+      type: string
+      format: date-time
+      description: Expiry date and time of the consumer's consent
+  required:
+    - consumerId
+    - consentId
+    - consentExpiryDateTime

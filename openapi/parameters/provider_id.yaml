@@ -1,0 +1,8 @@
+ProviderId:
+  name: providerId
+  in: path
+  required: true
+  description: Unique identifier for the provider
+  schema:
+    type: string
+    format: uuid

@@ -1,0 +1,8 @@
+ResearcherId:
+  name: researcherId
+  in: path
+  required: true
+  description: Unique identifier for the researcher
+  schema:
+    type: string
+    format: uuid

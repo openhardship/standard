@@ -1,0 +1,38 @@
+/providers/{providerId}/hardship-requests/{requestId}/response:
+  post:
+    tags:
+      - Providers
+      - HardshipRequests
+    summary: Respond to a hardship request
+    description: Submit a provider's response to a specific hardship request.
+    operationId: respondToHardshipRequest
+    parameters:
+      - $ref: '#/components/parameters/ProviderId'
+      - $ref: '#/components/parameters/RequestId'
+    security:
+      - DigitalID: [identity.standard, provider.write]
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HardshipResponse'
+      required: true
+    responses:
+      '201':
+        description: Response submitted successfully
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HardshipResponseDetail'
+      '400':
+        $ref: '#/components/responses/BadRequest'
+      '401':
+        $ref: '#/components/responses/Unauthorized'
+      '403':
+        $ref: '#/components/responses/Forbidden'
+      '404':
+        $ref: '#/components/responses/NotFound'
+      '422':
+        $ref: '#/components/responses/UnprocessableEntity'
+      '500':
+        $ref: '#/components/responses/InternalError'

@@ -1,0 +1,8 @@
+ConsumerId:
+  name: consumerId
+  in: path
+  required: true
+  description: Unique identifier for the consumer
+  schema:
+    type: string
+    format: uuid

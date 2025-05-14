@@ -1,0 +1,9 @@
+ErrorResponse:
+  type: object
+  properties:
+    errors:
+      type: array
+      items:
+        $ref: '#/components/schemas/Error'
+  required:
+    - errors

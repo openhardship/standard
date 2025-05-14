@@ -1,0 +1,18 @@
+Error:
+  type: object
+  properties:
+    code:
+      type: string
+      description: A machine-readable error code
+    title:
+      type: string
+      description: A human-readable error title
+    detail:
+      type: string
+      description: A human-readable explanation of the error
+    meta:
+      type: object
+      description: Additional metadata about the error
+  required:
+    - code
+    - title

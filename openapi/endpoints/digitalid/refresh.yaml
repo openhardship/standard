@@ -1,0 +1,45 @@
+/auth/digitalid/refresh:
+  post:
+    tags:
+      - Authentication
+    summary: Refresh DigitalID token
+    description: Refresh an expired DigitalID access token using a refresh token.
+    operationId: refreshDigitalIDToken
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              refreshToken:
+                type: string
+                description: Refresh token obtained during authentication
+            required:
+              - refreshToken
+    responses:
+      '200':
+        description: Token refreshed successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accessToken:
+                  type: string
+                  description: New access token
+                tokenType:
+                  type: string
+                  description: Token type, usually 'Bearer'
+                expiresIn:
+                  type: integer
+                  description: Token expiry time in seconds
+                refreshToken:
+                  type: string
+                  description: New refresh token
+      '400':
+        $ref: '#/components/responses/BadRequest'
+      '401':
+        $ref: '#/components/responses/Unauthorized'
+      '500':
+        $ref: '#/components/responses/InternalError'
+

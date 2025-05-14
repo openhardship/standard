@@ -1,0 +1,39 @@
+HardshipRequestCreate:
+  type: object
+  properties:
+    providerId:
+      type: string
+      format: uuid
+      description: Identifier of the provider to which the request is being made
+    accountIds:
+      type: array
+      items:
+        type: string
+      description: List of account identifiers related to the hardship request
+    requestType:
+      type: string
+      enum: [PAYMENT_DEFERRAL, PAYMENT_REDUCTION, PAYMENT_EXTENSION, DEBT_WAIVER, OTHER]
+      description: Type of hardship assistance being requested
+    requestReason:
+      type: string
+      enum: [UNEMPLOYMENT, ILLNESS, NATURAL_DISASTER, RELATIONSHIP_BREAKDOWN, REDUCED_INCOME, OTHER]
+      description: Reason for the hardship request
+    reasonDetails:
+      type: string
+      description: Additional details about the hardship reason
+    proposedSolution:
+      type: string
+      description: Consumer's proposed solution to address the hardship
+    financialSummary:
+      $ref: '#/components/schemas/FinancialSummary'
+    supportingDocuments:
+      type: array
+      items:
+        $ref: '#/components/schemas/Document'
+      description: Supporting documents for the hardship request
+  required:
+    - providerId
+    - accountIds
+    - requestType
+    - requestReason
+    - financialSummary

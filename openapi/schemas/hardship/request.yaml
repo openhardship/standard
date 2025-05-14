@@ -1,0 +1,78 @@
+HardshipRequest:
+  type: object
+  properties:
+    requestId:
+      type: string
+      format: uuid
+      description: Unique identifier for the hardship request
+    consumerId:
+      type: string
+      format: uuid
+      description: Identifier of the consumer making the request
+    digitalIdVerificationLevel:
+      type: string
+      enum: [BASIC, STANDARD, STRONG]
+      description: Level of DigitalID verification used for this request
+    providerId:
+      type: string
+      format: uuid
+      description: Identifier of the provider to which the request is being made
+    counsellorId:
+      type: string
+      format: uuid
+      description: Identifier of the counsellor if request was made via a counsellor
+    accountIds:
+      type: array
+      items:
+        type: string
+      description: List of account identifiers related to the hardship request
+    requestType:
+      type: string
+      enum: [PAYMENT_DEFERRAL, PAYMENT_REDUCTION, PAYMENT_EXTENSION, DEBT_WAIVER, OTHER]
+      description: Type of hardship assistance being requested
+    requestReason:
+      type: string
+      enum: [UNEMPLOYMENT, ILLNESS, NATURAL_DISASTER, RELATIONSHIP_BREAKDOWN, REDUCED_INCOME, OTHER]
+      description: Reason for the hardship request
+    reasonDetails:
+      type: string
+      description: Additional details about the hardship reason
+    proposedSolution:
+      type: string
+      description: Consumer's proposed solution to address the hardship
+    financialSummary:
+      $ref: '#/components/schemas/FinancialSummary'
+    supportingDocumentIds:
+      type: array
+      items:
+        type: string
+        format: uuid
+      description: Identifiers of supporting documents
+    status:
+      type: string
+      enum: [SUBMITTED, IN_REVIEW, APPROVED, REJECTED, MODIFIED, CANCELLED]
+      description: Current status of the hardship request
+    createdDateTime:
+      type: string
+      format: date-time
+      description: Date and time when the request was created
+    lastUpdatedDateTime:
+      type: string
+      format: date-time
+      description: Date and time when the request was last updated
+    responses:
+      type: array
+      items:
+        $ref: '#/components/schemas/HardshipResponseSummary'
+      description: List of responses from the provider
+  required:
+    - requestId
+    - consumerId
+    - providerId
+    - accountIds
+    - requestType
+    - requestReason
+    - financialSummary
+    - status
+    - createdDateTime
+    - lastUpdatedDateTime

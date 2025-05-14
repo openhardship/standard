@@ -1,0 +1,8 @@
+ReviewerId:
+  name: reviewerId
+  in: path
+  required: true
+  description: Unique identifier for the reviewer
+  schema:
+    type: string
+    format: uuid

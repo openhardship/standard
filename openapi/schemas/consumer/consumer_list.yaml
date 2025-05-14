@@ -1,0 +1,15 @@
+ConsumerList:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/components/schemas/Consumer'
+    links:
+      $ref: '#/components/schemas/Links'
+    meta:
+      $ref: '#/components/schemas/Meta'
+  required:
+    - data
+    - links
+    - meta

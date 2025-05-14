@@ -1,0 +1,50 @@
+/researchers/{researcherId}/hardship-statistics:
+  get:
+    tags:
+      - Researchers
+    summary: Get aggregated hardship statistics
+    description: Retrieve aggregated statistics about hardship requests for research purposes.
+    operationId: getHardshipStatistics
+    parameters:
+      - $ref: '#/components/parameters/ResearcherId'
+      - name: dateFrom
+        in: query
+        description: Filter statistics from this date (inclusive)
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: dateTo
+        in: query
+        description: Filter statistics to this date (inclusive)
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: aggregationLevel
+        in: query
+        description: Level of data aggregation
+        required: true
+        schema:
+          type: string
+          enum: [NATIONAL, STATE, REGION, PRODUCT_CATEGORY]
+    security:
+      - DigitalID: [identity.strong, researcher.read]
+    responses:
+      '200':
+        description: Successful response
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HardshipStatistics'
+      '400':
+        $ref: '#/components/responses/BadRequest'
+      '401':
+        $ref: '#/components/responses/Unauthorized'
+      '403':
+        $ref: '#/components/responses/Forbidden'
+      '422':
+        $ref: '#/components/responses/UnprocessableEntity'
+      '500':
+        $ref: '#/components/responses/InternalError'
+

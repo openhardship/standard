@@ -1,0 +1,43 @@
+/auth/digitalid/initiate:
+  get:
+    tags:
+      - Authentication
+    summary: Initiate DigitalID authentication
+    description: Redirects the user to the DigitalID authentication page.
+    operationId: initiateDigitalIDAuth
+    parameters:
+      - name: redirect_uri
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uri
+        description: URI to redirect to after authentication
+      - name: response_type
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: [code]
+        description: OAuth 2.0 response type
+      - name: scope
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Requested scopes (space-separated)
+      - name: state
+        in: query
+        required: true
+        schema:
+          type: string
+        description: State parameter for CSRF protection
+    responses:
+      '302':
+        description: Redirect to DigitalID
+        headers:
+          Location:
+            schema:
+              type: string
+            description: URL to redirect to
+

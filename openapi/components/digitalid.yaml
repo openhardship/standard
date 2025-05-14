@@ -1,0 +1,19 @@
+securitySchemes:
+  DigitalID:
+    type: openIdConnect
+    openIdConnectUrl: https://authentication.digitalid.gov.au/.well-known/openid-configuration
+    description: Australian DigitalID authentication for the OpenHardship API
+    flows:
+      implicit:
+        scopes:
+          identity.basic: Basic identity verification
+          identity.standard: Standard identity verification
+          identity.strong: Strong identity verification
+          consumer.read: Read consumer data
+          consumer.write: Write consumer data
+          provider.read: Read provider data
+          provider.write: Write provider data
+          counsellor.read: Read counsellor data
+          counsellor.write: Write counsellor data
+          reviewer.read: Read reviewer data
+          researcher.read: Read researcher data

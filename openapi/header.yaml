@@ -1,0 +1,41 @@
+openapi: 3.1.0
+info:
+  title: OpenHardship API
+  description: |
+    This specification defines the OpenHardship API that enables secure, standardized exchange of financial hardship information between Consumers, Counsellors, Providers, Reviewers, and Researchers.
+    
+    The OpenHardship standard aims to reduce the impacts of financial hardship by allowing Australian consumers to make repayments in a sustainable way.
+    
+    This API integrates with the Australian DigitalID system for secure identity verification of all participants.
+  version: 1.1.0
+  contact:
+    name: OpenHardship Working Group
+    url: https://www.openhardship.org.au
+    email: info@openhardship.org.au
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+
+servers:
+  - url: https://api.openhardship.org.au/v1
+    description: Production OpenHardship API
+  - url: https://test.openhardship.org.au/v1
+    description: Test OpenHardship API
+
+tags:
+  - name: Authentication
+    description: Endpoints for DigitalID authentication and identity verification
+  - name: HardshipRequests
+    description: Endpoints for creating and managing hardship requests
+  - name: Consumers
+    description: Endpoints for consumer management and data
+  - name: Providers
+    description: Endpoints for providers to receive and respond to hardship requests
+  - name: Counsellors
+    description: Endpoints for counsellors to manage requests on behalf of consumers
+  - name: Reviewers
+    description: Endpoints for reviewers to access anonymized data for compliance checks
+  - name: Researchers
+    description: Endpoints for researchers to access aggregated data
+  - name: Common
+    description: Common schemas and parameters used across the API

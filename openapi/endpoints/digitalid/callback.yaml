@@ -1,0 +1,49 @@
+/auth/digitalid/callback:
+  get:
+    tags:
+      - Authentication
+    summary: Handle DigitalID callback
+    description: Process the callback from DigitalID after authentication.
+    operationId: handleDigitalIDCallback
+    parameters:
+      - name: code
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Authorization code from DigitalID
+      - name: state
+        in: query
+        required: true
+        schema:
+          type: string
+        description: State parameter for CSRF protection
+    responses:
+      '200':
+        description: Authentication successful
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accessToken:
+                  type: string
+                  description: Access token for API access
+                tokenType:
+                  type: string
+                  description: Token type, usually 'Bearer'
+                expiresIn:
+                  type: integer
+                  description: Token expiry time in seconds
+                refreshToken:
+                  type: string
+                  description: Refresh token for obtaining new access tokens
+                idToken:
+                  type: string
+                  description: ID token containing user identity information
+      '400':
+        $ref: '#/components/responses/BadRequest'
+      '401':
+        $ref: '#/components/responses/Unauthorized'
+      '500':
+        $ref: '#/components/responses/InternalError'

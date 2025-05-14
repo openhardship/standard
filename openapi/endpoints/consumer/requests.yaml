@@ -1,0 +1,72 @@
+/consumers/{consumerId}/hardship-requests:
+  get:
+    tags:
+      - Consumers
+      - HardshipRequests
+    summary: Get all hardship requests for a consumer
+    description: Retrieve all hardship requests created by or on behalf of the specified consumer.
+    operationId: getConsumerHardshipRequests
+    parameters:
+      - $ref: '#/components/parameters/ConsumerId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+    security:
+      - DigitalID: [identity.basic, consumer.read]
+    responses:
+      '200':
+        description: Successful response
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HardshipRequestList'
+      '400':
+        $ref: '#/components/responses/BadRequest'
+      '401':
+        $ref: '#/components/responses/Unauthorized'
+      '403':
+        $ref: '#/components/responses/Forbidden'
+      '404':
+        $ref: '#/components/responses/NotFound'
+      '422':
+        $ref: '#/components/responses/UnprocessableEntity'
+      '500':
+        $ref: '#/components/responses/InternalError'
+  post:
+    tags:
+      - Consumers
+      - HardshipRequests
+    summary: Create a new hardship request
+    description: Create a new hardship request for the specified consumer.
+    operationId: createHardshipRequest
+    parameters:
+      - $ref: '#/components/parameters/ConsumerId'
+    security:
+      - DigitalID: [identity.basic, consumer.write]
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HardshipRequestCreate'
+      required: true
+    responses:
+      '201':
+        description: Hardship request created successfully
+        headers:
+          x-request-id:
+            schema:
+              type: string
+            description: The unique identifier for the request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HardshipRequest'
+      '400':
+        $ref: '#/components/responses/BadRequest'
+      '401':
+        $ref: '#/components/responses/Unauthorized'
+      '403':
+        $ref: '#/components/responses/Forbidden'
+      '422':
+        $ref: '#/components/responses/UnprocessableEntity'
+      '500':
+        $ref: '#/components/responses/InternalError'

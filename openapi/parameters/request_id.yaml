@@ -1,0 +1,8 @@
+RequestId:
+  name: requestId
+  in: path
+  required: true
+  description: Unique identifier for the hardship request
+  schema:
+    type: string
+    format: uuid
